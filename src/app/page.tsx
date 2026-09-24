@@ -13,19 +13,15 @@ export default function TodayPage() {
   const { store, today, setStart, mark } = useTracker();
 
   const view = useMemo(() => {
-    if (!store) return null;
-    const week = weeks[weekNumber(store.start, today) - 1];
+    const active = store ?? { start: today, items: {} };
+    const week = weeks[weekNumber(active.start, today) - 1];
     const day = week.days[weekdayKey(today)];
-    const due = dueIds(store, today)
+    const due = dueIds(active, today)
       .map((id) => problemById.get(id))
       .filter((problem) => problem !== undefined);
-    const solved = Object.values(store.items).filter((item) => item.reviews > 0);
-    return { week, day, due, solved: solved.length };
+    const solved = Object.values(active.items).filter((item) => item.reviews > 0);
+    return { week, day, due, solved: solved.length, start: active.start };
   }, [store, today]);
-
-  if (!store || !view) {
-    return <p className="text-sm text-muted-foreground">Opening the desk…</p>;
-  }
 
   return (
     <div className="space-y-8">
@@ -51,7 +47,7 @@ export default function TodayPage() {
           <input
             id="start-date"
             type="date"
-            value={store.start}
+            value={view.start}
             onChange={(event) => setStart(event.target.value)}
             className="mt-1 w-full rounded-lg border border-border bg-background px-3 py-2 text-sm"
           />
@@ -89,7 +85,8 @@ export default function TodayPage() {
         ) : (
           <ul className="space-y-2">
             {view.due.map((problem) => {
-              const attempt = store.items[problem.id];
+              const attempt = store?.items[problem.id];
+              if (!attempt) return null;
               return (
                 <li
                   key={problem.id}

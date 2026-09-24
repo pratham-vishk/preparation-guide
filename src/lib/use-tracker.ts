@@ -11,25 +11,27 @@ function emptyStore(): Store {
 }
 
 export function useTracker() {
-  const [store, setStore] = useState<Store | null>(null);
   const today = todayISO();
+  const [store, setStore] = useState<Store>(() => emptyStore());
+  const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
     const raw = localStorage.getItem(KEY);
-    if (!raw) {
-      setStore(emptyStore());
-      return;
+    if (raw) {
+      try {
+        const parsed = JSON.parse(raw) as Store;
+        if (parsed.start && parsed.items) setStore(parsed);
+      } catch {
+        // Keep the empty desk if the saved blob is unreadable.
+      }
     }
-    try {
-      setStore(JSON.parse(raw) as Store);
-    } catch {
-      setStore(emptyStore());
-    }
+    setHydrated(true);
   }, []);
 
   useEffect(() => {
-    if (store) localStorage.setItem(KEY, JSON.stringify(store));
-  }, [store]);
+    if (!hydrated) return;
+    localStorage.setItem(KEY, JSON.stringify(store));
+  }, [store, hydrated]);
 
   function setStart(start: string) {
     setStore((current) => (current ? { ...current, start } : current));
