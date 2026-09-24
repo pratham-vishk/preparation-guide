@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { MarkButtons } from "@/components/mark-buttons";
 import { formatDay } from "@/lib/dates";
-import { patterns } from "@/lib/patterns";
+import { patterns, problemUrl } from "@/lib/patterns";
 import { useTracker } from "@/lib/use-tracker";
 
 export default function PatternsPage() {
@@ -14,6 +14,12 @@ export default function PatternsPage() {
     [],
   );
   const visible = patterns.filter((pattern) => phase === "All" || pattern.phase === phase);
+
+  useEffect(() => {
+    const id = window.location.hash.replace("#", "");
+    if (!id) return;
+    document.getElementById(id)?.scrollIntoView({ block: "start" });
+  }, []);
 
   return (
     <div className="space-y-6">
@@ -81,7 +87,18 @@ export default function PatternsPage() {
                     <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
                       <div>
                         <p className="font-medium">
-                          {problem.name}{" "}
+                          {problemUrl(problem.name) ? (
+                            <a
+                              href={problemUrl(problem.name) ?? undefined}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="underline decoration-foreground/30 underline-offset-2 hover:decoration-foreground"
+                            >
+                              {problem.name}
+                            </a>
+                          ) : (
+                            problem.name
+                          )}{" "}
                           <span className="text-xs font-normal uppercase tracking-wide text-muted-foreground">
                             {problem.difficulty}
                           </span>

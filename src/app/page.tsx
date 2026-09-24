@@ -10,9 +10,10 @@ import { dueIds } from "@/lib/tracker";
 import { useTracker } from "@/lib/use-tracker";
 
 export default function TodayPage() {
-  const { store, today, setStart, mark } = useTracker();
+  const { store, today, ready, setStart, mark } = useTracker();
 
   const view = useMemo(() => {
+    if (!ready || !today) return null;
     const active = store ?? { start: today, items: {} };
     const week = weeks[weekNumber(active.start, today) - 1];
     const day = week.days[weekdayKey(today)];
@@ -21,7 +22,19 @@ export default function TodayPage() {
       .filter((problem) => problem !== undefined);
     const solved = Object.values(active.items).filter((item) => item.reviews > 0);
     return { week, day, due, solved: solved.length, start: active.start };
-  }, [store, today]);
+  }, [store, today, ready]);
+
+  if (!ready || !view) {
+    return (
+      <div className="space-y-3">
+        <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Today</p>
+        <h1 className="font-heading text-4xl leading-tight">Loading today’s plan</h1>
+        <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
+          The day is taken from this browser so the date matches your timezone.
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-8">

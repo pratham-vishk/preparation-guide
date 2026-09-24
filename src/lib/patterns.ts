@@ -1099,6 +1099,31 @@ export const allProblems = patterns.flatMap((pattern) =>
 
 export const problemById = new Map(allProblems.map((problem) => [problem.id, problem]));
 
+const leetcodeSlug: Record<string, string | null> = {
+  "Two Sum II": "two-sum-ii-input-array-is-sorted",
+  "Find First and Last Position": "find-first-and-last-position-of-element-in-sorted-array",
+  "Capacity To Ship Packages Within D Days": "capacity-to-ship-packages-within-d-days",
+  "Lowest Common Ancestor of a BST": "lowest-common-ancestor-of-a-binary-search-tree",
+  "Implement Trie": "implement-trie-prefix-tree",
+  "Maximum XOR of Two Numbers": "maximum-xor-of-two-numbers-in-an-array",
+  "Find the Index of the First Occurrence": "find-the-index-of-the-first-occurrence-in-a-string",
+  "Optimize Water Distribution": "optimize-water-distribution-in-a-village",
+  "Smallest Prime Factor practice": null,
+  "Matrix Chain Multiplication": null,
+};
+
+export function problemUrl(name: string) {
+  if (Object.prototype.hasOwnProperty.call(leetcodeSlug, name)) {
+    const slug = leetcodeSlug[name];
+    return slug ? `https://leetcode.com/problems/${slug}/` : null;
+  }
+  const slug = name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+  return `https://leetcode.com/problems/${slug}/`;
+}
+
 export const drills: { prompt: string; patternId: string; why: string }[] = [
   {
     prompt: "Sorted array. Find two indexes that add up to a target.",

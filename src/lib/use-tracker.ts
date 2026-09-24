@@ -6,26 +6,30 @@ import { markAttempt, type Attempt, type Mark, type Store } from "./tracker";
 
 const KEY = "switch-desk-v1";
 
-function emptyStore(): Store {
-  return { start: todayISO(), items: {} };
-}
+const stableStore: Store = { start: "2026-01-01", items: {} };
 
 export function useTracker() {
-  const today = todayISO();
-  const [store, setStore] = useState<Store>(() => emptyStore());
+  const [today, setToday] = useState("");
+  const [ready, setReady] = useState(false);
+  const [store, setStore] = useState<Store>(stableStore);
   const [hydrated, setHydrated] = useState(false);
 
   useEffect(() => {
+    const now = todayISO();
+    setToday(now);
+    let next: Store = { start: now, items: {} };
     const raw = localStorage.getItem(KEY);
     if (raw) {
       try {
         const parsed = JSON.parse(raw) as Store;
-        if (parsed.start && parsed.items) setStore(parsed);
+        if (parsed.start && parsed.items) next = parsed;
       } catch {
-        // Keep the empty desk if the saved blob is unreadable.
+        // Keep a fresh desk if the saved blob is unreadable.
       }
     }
+    setStore(next);
     setHydrated(true);
+    setReady(true);
   }, []);
 
   useEffect(() => {
@@ -38,12 +42,13 @@ export function useTracker() {
   }
 
   function mark(id: string, mark: Mark) {
+    const now = todayISO();
+    setToday(now);
     setStore((current) => {
-      if (!current) return current;
       const previous = current.items[id];
       return {
         ...current,
-        items: { ...current.items, [id]: markAttempt(previous, mark, today) },
+        items: { ...current.items, [id]: markAttempt(previous, mark, now) },
       };
     });
   }
@@ -51,19 +56,20 @@ export function useTracker() {
   function toggleStar(id: string) {
     setStore((current) => {
       if (!current) return current;
+      const now = todayISO();
       const previous = current.items[id];
       const next: Attempt = previous
         ? { ...previous, star: !previous.star }
         : {
             mark: "blue",
             reviews: 0,
-            last: today,
-            next: today,
+            last: now,
+            next: now,
             star: true,
           };
       return { ...current, items: { ...current.items, [id]: next } };
     });
   }
 
-  return { store, today, setStart, mark, toggleStar };
+  return { store, today, ready, setStart, mark, toggleStar };
 }

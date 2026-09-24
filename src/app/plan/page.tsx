@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { weekdayLabel, weeks } from "@/lib/plan";
 import { patternById } from "@/lib/patterns";
 import type { Weekday } from "@/lib/dates";
@@ -36,9 +35,9 @@ export default function PlanPage() {
                 {week.patterns.map((id, index) => (
                   <span key={id}>
                     {index > 0 && " · "}
-                    <Link href={`/patterns#${id}`} className="text-primary">
+                    <a href={`/patterns#${id}`} className="text-primary underline-offset-2 hover:underline">
                       {patternById.get(id)?.name}
-                    </Link>
+                    </a>
                   </span>
                 ))}
               </p>
