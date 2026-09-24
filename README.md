@@ -1,30 +1,36 @@
 # Switch Desk
 
-A 16-week operating desk for a Java / Spring Boot engineer at Dell (SE2, about 22 LPA) who wants a more stable product-company seat around 40–50 LPA total compensation, and who has forgotten DSA after solving it more than once.
+Office study desk for Pratham, a Dell SDE II (3+ years, about 22 LPA) aiming at a stable product-company backend seat around 40–50 LPA total compensation. That number is a target, not an offer.
 
-The plan is pattern retrieval, not a 342-question grind. AI and Python stay in one copilot project. Certificates and a BITS Pilani work-integrated M.Tech wait until after the job switch.
-
-Compensation figures in the Market page are reported medians from Levels.fyi (mid to late 2026), not offers.
+The profile is one line: Java and Spring backend, then cloud-native, then AI and agents on the same systems. Python is the second language. Go is later. Forward-deployed engineering stays an optional track.
 
 ## Run
 
 ```bash
 npm install
-npm run dev
+npm run dev -- --port 43123 --hostname 0.0.0.0
 ```
 
-The dev server in this workspace is usually started on port 43123. Open the local URL printed by Next.js.
+Open the URL Next prints. Marks stay in this browser (`localStorage`).
 
-Marks and review dates stay in the browser (`localStorage`). Nothing is sent to a server.
+## What to open
 
-## What to open first
+1. **Today** — the day's blocks once you set a start date. Weekdays are 2.5 hours.
+2. **Syllabus** — every lesson: figure, sequence, steps, example, and the office close-out. Same text is in `guide/` as Markdown.
+3. **Patterns** — about 37 shapes and the representative problems, with review marks.
+4. **Drill** — name the pattern before the code.
+5. **Weeks** — the pattern order inside the September 2026 to January 2027 calendar.
+6. **Market** — reported compensation bands, not promises.
+7. **Build** — the object-storage operations project, the certificate list, and BITS as a side degree.
 
-1. **Today** — set the start date, then do that day's three blocks.
-2. **Market** — which titles actually sit near 40–50 LPA, and why FDE is a later bet.
-3. **Patterns** — 37 shapes, about 100 problems, Java skeletons, and a review mark.
-4. **Drill** — name the pattern before looking at code.
-5. **Build** — the two repos, the certificate verdicts, and BITS.
+`guide/pratham-preparation-guide.pdf` is the printable copy of the syllabus. Regenerate the Markdown with:
+
+```bash
+node --experimental-strip-types scripts/export-guide.mjs
+```
 
 ## Study rule
 
-A problem counts when you can rewrite it from an empty file on a later day. The schedule after each mark is day 1, 3, 7, 15, then 30.
+A problem counts when you can rewrite it from an empty file later. After a mark, reviews fall on day 1, 3, 7, 15, and 30.
+
+Applications start in January 2027. The switch window is April 2027, after a year at Dell. Do not put Dell proprietary data or code into the project.

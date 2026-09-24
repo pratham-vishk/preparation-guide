@@ -19,27 +19,29 @@ const weekday = (
   dsa: string,
   depth: string,
 ): DayPlan => ({
-  minutes: "1h 45m",
+  minutes: "2h 30m",
   blocks: [
-    { label: "Retrieve", text: "20 min. Blank-rewrite yesterday's problem. If you cannot, that problem is still red. Do not start a new one." },
-    { label: "DSA", text: dsa },
-    { label: "Depth", text: depth },
+    { label: "DSA · 75 min", text: `First 20 min is a blank rewrite of yesterday. If that fails, this block stays on that problem. Then: ${dsa}` },
+    { label: "Backend · 45 min", text: depth },
+    { label: "Python / cloud · 30 min", text: "One slice from the syllabus: syntax, a diagram, or one line of the storage-ops project. Stop at 30 minutes." },
   ],
 });
 
 const weekendBuild = (text: string): DayPlan => ({
-  minutes: "2h 30m",
+  minutes: "6h",
   blocks: [
-    { label: "Build", text },
-    { label: "Stop", text: "No new DSA topic on Saturday. One bug fixed and written down beats three tutorials." },
+    { label: "DSA · 2h", text: "Two representative problems for this week's pattern. Rewrite one from a blank file before you open a new one." },
+    { label: "System design · 2h", text: "One design from the syllabus checklist. Requirements through trade-offs, on paper." },
+    { label: "Project · 2h", text },
   ],
 });
 
 const sunday = (text: string): DayPlan => ({
-  minutes: "60m",
+  minutes: "4h 30m",
   blocks: [
-    { label: "Revision only", text },
-    { label: "No new input", text: "No YouTube, no new list, no certificate lecture. Reopen red and yellow cards. Mark the next review date." },
+    { label: "DSA revision · 1.5h", text },
+    { label: "Project · 2h", text: "Continue the storage-ops milestone for this phase. No new course." },
+    { label: "Java or mock · 1h", text: "Explain one Spring or concurrency answer out loud, or run a short mock. No certificate lecture." },
   ],
 });
 

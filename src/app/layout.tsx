@@ -16,7 +16,7 @@ const newsreader = Newsreader({
 export const metadata: Metadata = {
   title: "Switch Desk",
   description:
-    "A 16-week plan for a Java engineer moving from a 22 LPA seat toward a 40–50 LPA product role.",
+    "Office syllabus for a Dell SDE II moving toward a 40–50 LPA Java backend role by April 2027.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

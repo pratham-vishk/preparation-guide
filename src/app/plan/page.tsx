@@ -8,15 +8,16 @@ export default function PlanPage() {
   return (
     <div className="space-y-8">
       <header className="max-w-3xl space-y-3">
-        <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">About 12 hours a week</p>
+        <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">About 19–20 hours a week</p>
         <h1 className="font-heading text-4xl leading-tight sm:text-5xl">
-          Sixteen weeks. Weekdays are 1 hour 45. Saturday is the build. Sunday is retrieval only.
+          Pattern weeks inside the September-to-January calendar.
         </h1>
         <p className="text-lg leading-relaxed">
-          Split the time 80/20. Eighty percent is the Java interview: patterns, blank rewrites,
-          concurrency, Kafka, Postgres, and design. Twenty percent is one copilot project and
-          enough Python to read and change it. Applications start in week 16, while the material
-          is still warm, not after a fantasy “syllabus complete” day.
+          Weekdays are 2.5 hours: 75 minutes of DSA, 45 minutes of backend or design, 30 minutes
+          of Python, AI, or cloud. Saturday is two hours each of DSA, design, and the project.
+          Sunday is retrieval, project, and one Java or mock hour. Dates, phases, and the
+          flagship milestones live on the syllabus. This page is the order of the patterns.
+          Applications start in January 2027, while the material is still warm.
         </p>
       </header>
       <ol className="space-y-6">

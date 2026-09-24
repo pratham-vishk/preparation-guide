@@ -30,8 +30,12 @@ export default function TodayPage() {
         <p className="text-xs uppercase tracking-[0.16em] text-muted-foreground">Today</p>
         <h1 className="font-heading text-4xl leading-tight">Loading today’s plan</h1>
         <p className="max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          The day is taken from this browser so the date matches your timezone.
+          The day is taken from this browser so the date matches your timezone. The full
+          syllabus is on the Syllabus tab.
         </p>
+        <Link href="/learn" className="text-sm text-primary">
+          Open the syllabus
+        </Link>
       </div>
     );
   }
@@ -121,12 +125,13 @@ export default function TodayPage() {
 
       <section className="grid gap-4 md:grid-cols-2">
         <article className="rounded-2xl border border-dashed border-foreground/20 p-4">
-          <h2 className="font-heading text-2xl">What 16 weeks can do</h2>
+          <h2 className="font-heading text-2xl">What these weeks can do</h2>
           <p className="mt-2 text-sm leading-relaxed">
-            You can become interview-ready for a Java SDE II / SWE III loop: pattern recognition,
-            blank rewrites, one production-shaped Spring service, one small agent on top of it,
-            and applications actually sent. You cannot also finish 342 checklist rows, six
-            certificates, Python as a second career, and a BITS semester in the same evenings.
+            About 19–20 hours a week, from 25 September 2026 through mid-January, gets you
+            interview-ready for a Java SDE II / senior backend loop: pattern retrieval, Spring
+            depth, a handful of designs, AWS and Kubernetes on one storage-ops project, and
+            Python used to build the agents. Selective applications start in January. The switch
+            window is April 2027, after a year at Dell. The syllabus tab is the dated plan.
           </p>
         </article>
         <article className="rounded-2xl border border-dashed border-foreground/20 p-4">
