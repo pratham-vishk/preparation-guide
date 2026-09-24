@@ -13,6 +13,10 @@ flowchart LR
   Postgres --> Redis
 ```
 
+## Three uses, one rule
+
+Cache: bucket metadata with a TTL, cache-aside, delete on write. Rate limit: a counter or a token field with a TTL. Agent session: a short-lived JSON blob keyed by the conversation, not the system of record. Eviction can drop any of these. Postgres still has the bucket. A lock in Redis needs a token and an expiry so a dead owner does not hold it forever. Persistence is optional. Do not describe Redis as the ledger.
+
 ## Play this
 
 1. Cache has a TTL

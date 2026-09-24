@@ -14,8 +14,8 @@ export default function LearnIndexPage() {
         <p className="text-lg leading-relaxed">
           Dell SDE II, three-plus years, Java and Spring already in production. The hours go to
           retrieval, interview depth, one storage-operations project, and applications from
-          January. Each topic below has a figure, a sequence you can play, the steps, and the
-          thing to do before you close the laptop.
+          January. Start with the skill map. Every row in the target stack has a lesson under it,
+          including the Java templates for each DSA pattern.
         </p>
       </header>
       <div className="grid gap-4 lg:grid-cols-[16rem_1fr]">

@@ -15,6 +15,10 @@ flowchart TD
   Draft --> Cite
 ```
 
+## Retrieval with a job
+
+Input is an incident id. Load its logs. Retrieve similar synthetic incidents and postmortems. Answer with a suspected cause, a fix, and the ids you used. A missing citation fails the eval. Similar PRs, if you include them, are public or synthetic patches, not internal diffs.
+
 ## Play this
 
 1. Fetch by id

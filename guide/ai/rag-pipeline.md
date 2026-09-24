@@ -13,6 +13,10 @@ flowchart TD
   Cite --> Eval
 ```
 
+## The pipeline
+
+Ingest synthetic incidents. Chunk on paragraph or a fixed size with overlap, and write down why. Embed the chunks. Store them in a vector index with the incident id. Retrieve more than you need, rerank, then put the winners in the prompt with ids. The model answers with those ids as citations. The eval set is questions with expected ids. A wrong citation fails the test. This is the December milestone: ten questions, a score in the README.
+
 ## Play this
 
 1. Ingest offline

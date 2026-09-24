@@ -14,6 +14,10 @@ flowchart LR
   API --> S3
 ```
 
+## Walk it
+
+Bytes go to object storage in parts. Metadata and the part list go to Postgres. Complete assembles the object. A presigned URL lets the client upload without proxying the bytes through your app. This is the flagship's storage, synthetic. Dedup and encryption are sentences if time remains. The metadata write and the event use the outbox.
+
 ## Play this
 
 1. Metadata is not the bytes

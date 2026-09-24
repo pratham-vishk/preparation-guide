@@ -19,6 +19,10 @@ sequenceDiagram
   Model-->>User: answer plus citations
 ```
 
+## Walk it
+
+The design answer is the pipeline plus failure: the model can be down, the retrieval can be empty, the citation can be wrong. Empty retrieval returns 'I do not have that' rather than a fluent guess. The eval set is part of the design, not a follow-up. Cost is a metric: tokens in, tokens out.
+
 ## Play this
 
 1. Ingest offline

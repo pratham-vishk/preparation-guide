@@ -14,6 +14,10 @@ flowchart LR
   API --> Redirect
 ```
 
+## Walk it
+
+Create returns a short id. Read redirects. The id is random or a counter encoded in base 62. Reads dominate, so a cache sits in front. The database is the source. A collision retries. Analytics are an async event, not a write on the redirect path. Estimate: reads per second, row size, cache hit ratio. That estimate is a practice, and you say the assumptions.
+
 ## Play this
 
 1. Generate an unguessable id

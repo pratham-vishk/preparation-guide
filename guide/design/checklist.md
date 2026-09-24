@@ -22,6 +22,7 @@ flowchart TD
   Security --> Tradeoffs
 ```
 
+
 ## Play this
 
 1. Clarify read and write

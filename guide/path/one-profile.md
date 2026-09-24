@@ -14,6 +14,7 @@ flowchart LR
   X[Ten parallel careers] -.->|discard| A
 ```
 
+
 ## Play this
 
 1. Keep the Dell and TCS backend story

@@ -21,6 +21,10 @@ sequenceDiagram
   Tool-->>Agent: result
 ```
 
+## Walk it
+
+An orchestrator holds state. Specialist agents read logs, metrics, or config. A tool executor checks an allow-list and a human approval for anything that mutates. Every call has a timeout and a trace id. The platform is the project. In a design interview you draw the gate before you draw a second model.
+
 ## Play this
 
 1. Read tools are wider

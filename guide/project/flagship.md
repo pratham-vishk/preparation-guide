@@ -21,6 +21,10 @@ flowchart TD
   APIs --> Store[Synthetic object store]
 ```
 
+## What the README must show
+
+A stranger can run the synthetic cluster with Compose. The Java service owns buckets, events, and the outbox. The Python service answers a latency question with evidence ids. A mutation is proposed, approved, executed, and checked. The eval score is a number. No Dell data, no Dell code, no customer names.
+
 ## Play this
 
 1. Synthetic data only

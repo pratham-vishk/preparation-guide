@@ -15,6 +15,10 @@ flowchart LR
   Attempt -->|fail| Retry
 ```
 
+## Walk it
+
+A request writes a notification row and an outbox row. Workers send email, push, or webhook. Each send has a provider id so retries do not double-send. A dead letter holds addresses that bounce. Fanout to many devices is a queue, not a loop in the request. Idempotency is the provider key plus the notification id.
+
 ## Play this
 
 1. Event in

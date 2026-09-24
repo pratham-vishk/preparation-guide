@@ -14,6 +14,10 @@ flowchart LR
   Embed --> Near[Nearest chunks]
 ```
 
+## The words you must own
+
+Tokens are the model's units, not words. The context window is the budget for the prompt, the retrieved text, and the answer. Temperature and sampling change variety, not truth. Embeddings place texts in a vector space. Similarity is not a keyword match and not a citation. Structured output is a schema you validate. Tool calling is the model asking your code to run a function you defined. Streaming is how tokens arrive. A long log is chunked because it does not fit.
+
 ## Play this
 
 1. Tokens cost money and space

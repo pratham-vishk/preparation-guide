@@ -13,6 +13,17 @@ flowchart LR
   Read --> Write[One small service]
 ```
 
+## What reading Go means
+
+After the offer, read a small service: package main, an HTTP handler, error returns instead of exceptions, goroutines, and a context cancellation. You can write a health endpoint. You do not start a Go curriculum in October. Java remains the language you solve the medium in.
+
+```text
+func health(w http.ResponseWriter, r *http.Request) {
+    w.WriteHeader(http.StatusOK)
+    _, _ = w.Write([]byte("ok"))
+}
+```
+
 ## Play this
 
 1. Do not context-switch this winter

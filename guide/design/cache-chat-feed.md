@@ -13,6 +13,7 @@ flowchart TD
   Feed[Feed: push versus pull]
 ```
 
+
 ## Play this
 
 1. Cache is freshness

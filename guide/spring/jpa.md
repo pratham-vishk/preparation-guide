@@ -16,6 +16,10 @@ sequenceDiagram
   end
 ```
 
+## The queries you did not write
+
+A lazy list inside a loop issues one select per parent. That is N+1. Fix it with a fetch join or a batch. Eager on everything loads the graph. Optimistic locking throws on a version mismatch. Pessimistic locking holds the row. Open-session-in-view hides the N+1 until serialization. Turn SQL logging on for the test and count the selects.
+
 ## Play this
 
 1. One query becomes N

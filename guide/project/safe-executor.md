@@ -19,6 +19,10 @@ sequenceDiagram
   Gate-->>Human: verified
 ```
 
+## The gate
+
+The model proposes a tool call. The API stores the proposal as pending. A person approves. The executor runs the allow-listed tool with a timeout and an idempotency key. A verifier reads the metric or the config and records whether the change happened. A second approval does not double-apply. Denial is a recorded state. This is the January milestone.
+
 ## Play this
 
 1. Proposal is data

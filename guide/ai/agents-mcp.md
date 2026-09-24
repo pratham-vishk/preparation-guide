@@ -16,6 +16,10 @@ flowchart TD
   Stop -->|yes| Answer
 ```
 
+## A safe agent
+
+An agent is a loop: state, a model, tools, a stop. Tools are allow-listed. A tool that changes the cluster requires a human approval, a timeout, a retry policy, and an idempotency key. MCP is a protocol for exposing those tools. It does not grant judgment. Traces show each tool call. Evals include a case where the tool should not be called. Prompt injection and data leakage are in the threat list: the incident text is untrusted, and the tool cannot read secrets it does not need.
+
 ## Play this
 
 1. Allow-list the tools

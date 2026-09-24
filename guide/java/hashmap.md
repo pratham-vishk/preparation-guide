@@ -15,6 +15,24 @@ flowchart TD
   Load[Load factor] --> Resize
 ```
 
+## What you say
+
+A HashMap is an array of buckets. The key's hash selects the bucket. Inside the bucket, equals finds the entry. A bad hashCode puts everything in one bucket and the map becomes a list. When the load grows, the table resizes and rehashes. ConcurrentHashMap does not lock the whole map for a read. A plain HashMap is not safe for two writers.
+
+```text
+public final class Key {
+    private final String id;
+    public boolean equals(Object other) {
+        return other instanceof Key key && id.equals(key.id);
+    }
+    public int hashCode() { return id.hashCode(); }
+}
+```
+
+## equals and the bucket
+
+Equal keys must share a hashCode, or the lookup looks in the wrong bucket and returns null. Mutable keys move buckets after insertion. Use an immutable key. TreeMap is ordered and logarithmic. HashMap is expected constant time and unordered. Say which one you picked and the cost.
+
 ## Play this
 
 1. Compute hash

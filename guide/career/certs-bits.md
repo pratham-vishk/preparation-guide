@@ -14,6 +14,7 @@ flowchart TD
   Degree -.->|does not replace| Now
 ```
 
+
 ## Play this
 
 1. SAA after a real diagram

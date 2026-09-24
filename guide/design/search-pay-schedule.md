@@ -14,6 +14,7 @@ flowchart LR
   Logs[Logs: buffer then store]
 ```
 
+
 ## Play this
 
 1. Index asynchronously

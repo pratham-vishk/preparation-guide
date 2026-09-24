@@ -12,6 +12,7 @@ flowchart TD
   Later[MCM Trie KMP Kosaraju] --> After[After the loop]
 ```
 
+
 ## Play this
 
 1. Core patterns are the job

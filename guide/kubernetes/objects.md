@@ -14,6 +14,10 @@ flowchart TD
   HPA --> Deploy
 ```
 
+## What you debug
+
+A Deployment keeps replicas. A Service selects pods by label and maps a port. A probe failure restarts the container or removes it from the Service. Readiness false means the pod is up and should not receive traffic. Liveness false means restart it. HPA adds pods from CPU or from a custom metric such as queue lag. CrashLoopBackOff means you read the previous log, not that you delete the pod in a loop.
+
 ## Play this
 
 1. Deployment keeps N pods

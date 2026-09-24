@@ -16,6 +16,10 @@ sequenceDiagram
   Note over Bean: this.method skips the proxy
 ```
 
+## The proxy
+
+Spring builds the objects and injects them. @Transactional works because a proxy wraps the bean. A call from inside the same class does not pass the proxy, so the transaction annotation is ignored. The bean lifecycle is construction, dependency injection, init, use, destroy. Auto-configuration creates beans when a class is on the classpath and you did not define your own.
+
 ## Play this
 
 1. Container builds the bean

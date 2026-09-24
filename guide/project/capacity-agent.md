@@ -13,6 +13,10 @@ flowchart LR
   Forecast --> Advice
 ```
 
+## The forecast you can defend
+
+Read used bytes over time. Fit a simple trend. State the assumption: the last seven days continue. Answer whether the series crosses 80 percent inside the horizon. Recommend a scale step. A fake history in the repo is enough. A learned model is not required. The interview line is the assumption, not the library.
+
 ## Play this
 
 1. Use the stored series

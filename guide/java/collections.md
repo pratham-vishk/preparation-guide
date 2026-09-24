@@ -16,6 +16,10 @@ flowchart TD
   Need -->|deque| ArrayDeque
 ```
 
+## The choice
+
+ArrayList for indexed reads. LinkedList almost never in interview code. HashSet for membership. TreeSet when you need order. ArrayDeque as a stack or queue. PriorityQueue as a heap. ConcurrentHashMap when two threads share the map. Name the operation you do most, then the structure.
+
 ## Play this
 
 1. Name the operation

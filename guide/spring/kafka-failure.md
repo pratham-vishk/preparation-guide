@@ -22,6 +22,10 @@ sequenceDiagram
   end
 ```
 
+## The crash
+
+The consumer writes the database, then crashes before commit. The message is delivered again. The handler sees the idempotency key and skips. That is at-least-once. Committing before the work loses the message. A poison payload goes to a dead-letter topic after a small number of tries. A down dependency uses backoff, not an infinite loop. Offset order is the order you commit, so do not commit a later offset and skip a failed earlier one unless you have recorded the skip.
+
 ## Play this
 
 1. At least once is the default

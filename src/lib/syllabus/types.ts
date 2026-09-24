@@ -1,3 +1,9 @@
+export type Lesson = {
+  title: string;
+  body: string;
+  code?: string;
+};
+
 export type Topic = {
   section: string;
   slug: string;
@@ -12,6 +18,7 @@ export type Topic = {
   mistake: string;
   ask: string;
   office: string;
+  lessons?: Lesson[];
 };
 
 export function topic(
@@ -28,6 +35,22 @@ export function topic(
   ask: string,
   office: string,
   sequence?: string,
+  lessons?: Lesson[],
 ): Topic {
-  return { section, slug, title, minutes, why, flow, beats, steps, example, mistake, ask, office, sequence };
+  return {
+    section,
+    slug,
+    title,
+    minutes,
+    why,
+    flow,
+    beats,
+    steps,
+    example,
+    mistake,
+    ask,
+    office,
+    sequence,
+    lessons,
+  };
 }

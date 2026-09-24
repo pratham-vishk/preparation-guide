@@ -16,6 +16,17 @@ sequenceDiagram
   Task-->>API: complete or exception
 ```
 
+## Where the work runs
+
+A thread pool has a bound. An unbounded queue in front of a pool will eat the heap. CompletableFuture.supplyAsync uses the common pool unless you pass an executor. Do not block that pool on JDBC. Compose with thenCompose, handle the exception with exceptionally, and time out. A Future you never cancel is a leak of attention. Your Dell async work is this paragraph with a real pool size and a real failure.
+
+```text
+CompletableFuture
+    .supplyAsync(() -> load(bucket), ioPool)
+    .orTimeout(2, TimeUnit.SECONDS)
+    .exceptionally(error -> fallback(bucket));
+```
+
 ## Play this
 
 1. Do not new Thread in a request

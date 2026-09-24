@@ -15,6 +15,10 @@ flowchart TD
   Private --> RDS
 ```
 
+## Draw this before SAA
+
+A VPC. Public subnets for the load balancer. Private subnets for the tasks and the database. A NAT gateway if private tasks call the internet. Security groups are stateful allow-lists. IAM policies allow the task role to read one bucket and one secret. Nothing else. Cloud Practitioner does not teach this at the depth a backend loop expects. SAA is the credential after you can draw it from memory.
+
 ## Play this
 
 1. No long-lived keys on laptops

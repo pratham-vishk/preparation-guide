@@ -14,6 +14,10 @@ flowchart TD
   Redis -->|deny| R429[429]
 ```
 
+## Walk it
+
+Token bucket: tokens refill with time, a request takes one. Sliding window counts requests in the last N seconds. Store the counter in Redis so every app instance sees it. The key is the client. Failure of Redis is a product decision: fail open to keep the site up, or fail closed to keep a limit. Say which, for this API. The LLD lesson is the same limiter as classes.
+
 ## Play this
 
 1. Token bucket

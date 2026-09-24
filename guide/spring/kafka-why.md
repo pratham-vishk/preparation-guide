@@ -14,6 +14,10 @@ flowchart LR
   Topic --> Audit
 ```
 
+## The decision
+
+Use Kafka when several consumers need the same fact, when a slow consumer must not stop the writer, or when you may replay. Use REST when the caller needs the answer in this request. Ordering is per key. The key is bucket id if one bucket's events must stay ordered. Retention lets the RCA agent read yesterday. A topic is not a command bus for a synchronous user click.
+
 ## Play this
 
 1. Producer commits the fact

@@ -14,6 +14,10 @@ flowchart TD
   Fix -->|several fields| Lock
 ```
 
+## Visibility and exclusion
+
+volatile makes a write visible to a later read. It does not make a check-then-act atomic. synchronized or a Lock gives exclusion. AtomicInteger gives an atomic increment. A deadlock needs two locks and two orders. Take locks in one global order, or do not take two. Say the race in a sentence: two threads read the tokens, both decrement, the bucket goes negative.
+
 ## Play this
 
 1. volatile is visibility

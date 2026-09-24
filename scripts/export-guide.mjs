@@ -10,6 +10,12 @@ function body(item) {
   const sequence = item.sequence
     ? `\n## Sequence\n\n\`\`\`mermaid\n${item.sequence}\n\`\`\`\n`
     : "";
+  const lessons = (item.lessons ?? [])
+    .map((lesson) => {
+      const code = lesson.code ? `\n\n\`\`\`text\n${lesson.code}\n\`\`\`\n` : "\n";
+      return `## ${lesson.title}\n\n${lesson.body}${code}`;
+    })
+    .join("\n");
   return `# ${item.title}
 
 ${item.section} · ${item.minutes}
@@ -22,6 +28,7 @@ ${item.why}
 ${item.flow}
 \`\`\`
 ${sequence}
+${lessons}
 ## Play this
 
 ${item.beats.map((beat, index) => `${index + 1}. ${beat}`).join("\n")}
@@ -52,9 +59,9 @@ ${item.office}
 
 let index = `# Preparation guide
 
-One profile: Java backend and distributed systems, with Python and agents on a single storage-operations project.
+The full study guide for one profile: Java backend and distributed systems, with Python and agents on a single storage-operations project.
 
-Open the running desk for the animated figures. These files are the same lessons, readable in the repo.
+Each file is a lesson: the idea, a figure, the template or the design, the mistake, and the interview question. Open the running desk for the animated figures.
 
 `;
 

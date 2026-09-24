@@ -16,7 +16,7 @@ Open the URL Next prints. Marks stay in this browser (`localStorage`).
 ## What to open
 
 1. **Today** — the day's blocks once you set a start date. Weekdays are 2.5 hours.
-2. **Syllabus** — every lesson: figure, sequence, steps, example, and the office close-out. Same text is in `guide/` as Markdown.
+2. **Syllabus** — the study guide. The skill map is the checklist. Each DSA pattern has a Java template and the problems that count. Same text is in `guide/` and in `guide/pratham-preparation-guide.pdf`.
 3. **Patterns** — about 37 shapes and the representative problems, with review marks.
 4. **Drill** — name the pattern before the code.
 5. **Weeks** — the pattern order inside the September 2026 to January 2027 calendar.

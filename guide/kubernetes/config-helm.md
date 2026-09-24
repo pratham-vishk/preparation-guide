@@ -14,6 +14,10 @@ flowchart LR
   Practice --> CKAD
 ```
 
+## Then the exam
+
+ConfigMap is config. Secret is a credential, still not a place for a committed password in git. RBAC limits what the agent service account can do. A volume holds a scratch disk if you need one. Helm templates the manifests so the laptop and the cluster differ by values. CKAD is a timed performance exam over these objects. Book it after you can fix a crashing pod without notes.
+
 ## Play this
 
 1. ConfigMap for settings

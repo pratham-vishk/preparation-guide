@@ -1,4 +1,4 @@
-import { MermaidFigure } from "@/components/mermaid-figure";
+import { TopicBody } from "@/components/topic-body";
 import { topics } from "@/lib/syllabus";
 
 export default function PrintPage() {
@@ -6,14 +6,15 @@ export default function PrintPage() {
     <div className="mx-auto max-w-3xl space-y-10 print:max-w-none">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-[0.16em]">Pratham · preparation guide</p>
-        <h1 className="font-heading text-4xl">Backend, then AI on top. September 2026 to April 2027.</h1>
+        <h1 className="font-heading text-4xl">The preparation guide. September 2026 to April 2027.</h1>
         <p>
-          Dell SDE II, Java and Spring in production. Study this at the office. Diagrams are
-          written as Mermaid so they stay in the repo even when a slide tool is not open.
+          This is the study text, not only the calendar. Each skill from the target stack has a
+          lesson: the idea, the Java or the design, the mistake, and the question. Dell SDE II,
+          Java and Spring in production.
         </p>
       </header>
       {topics.map((item) => (
-        <article key={`${item.section}-${item.slug}`} className="space-y-3 break-inside-avoid">
+        <article key={`${item.section}-${item.slug}`} className="space-y-3 break-before-page">
           <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
             {item.section} · {item.minutes}
           </p>
@@ -24,28 +25,7 @@ export default function PrintPage() {
               <li key={beat}>{beat}</li>
             ))}
           </ol>
-          <MermaidFigure chart={item.flow} />
-          {item.sequence ? <MermaidFigure chart={item.sequence} /> : null}
-          <ul className="list-disc pl-5 text-sm">
-            {item.steps.map((step) => (
-              <li key={step}>{step}</li>
-            ))}
-          </ul>
-          <pre className="overflow-x-auto whitespace-pre-wrap rounded-xl bg-foreground p-3 text-xs text-background">
-            {item.example}
-          </pre>
-          <p className="text-sm">
-            <strong>Miss. </strong>
-            {item.mistake}
-          </p>
-          <p className="text-sm">
-            <strong>Ask. </strong>
-            {item.ask}
-          </p>
-          <p className="text-sm">
-            <strong>Do. </strong>
-            {item.office}
-          </p>
+          <TopicBody item={item} />
         </article>
       ))}
     </div>

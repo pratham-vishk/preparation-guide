@@ -14,6 +14,10 @@ flowchart TD
   Repeatable --> Stable[Stable rows]
 ```
 
+## Propagation and isolation
+
+REQUIRED joins the current transaction or starts one. REQUIRES_NEW suspends the current one. A failure in the inner new transaction does not, by itself, roll back the outer one. Default isolation on Postgres is read committed. A lost update needs a version or a lock. Rollback happens on a runtime exception. A checked exception needs rollbackFor. Say the boundary: the business row and the outbox row share one transaction.
+
 ## Play this
 
 1. Name the boundary

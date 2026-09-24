@@ -14,6 +14,10 @@ flowchart LR
   Service --> Trace
 ```
 
+## Who calls, and what you do when the next hop is sick
+
+JWT is a signed claim. Validate the signature, the expiry, and the audience. OAuth is how the token was issued. The resource server checks the token. It does not ask the user for a password. Resilience: a timeout, a small retry on idempotent calls, a circuit breaker when the dependency is failing fast, and a fallback you can explain. Actuator opens health and metrics. The correlation id ties the log to the trace.
+
 ## Play this
 
 1. Authenticate then authorize

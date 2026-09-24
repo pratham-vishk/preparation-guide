@@ -15,6 +15,10 @@ flowchart LR
   FastAPI --> Pydantic
 ```
 
+## The sequence
+
+Syntax, collections, functions, classes, venv, pip, typing, requests. Then pytest, httpx, asyncio where the client is async, FastAPI, Pydantic, and SQLAlchemy only if Python reads the database. Docker last in this list so the image wraps a service that already runs. The detailed lessons are Syntax and collections, and FastAPI, Pydantic, SQLAlchemy.
+
 ## Play this
 
 1. Functions and dicts

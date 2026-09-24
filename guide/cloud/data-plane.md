@@ -14,6 +14,10 @@ flowchart LR
   App --> Cache
 ```
 
+## Which store
+
+S3 holds bytes: synthetic objects, log batches. It is durable and the request pays per call. RDS Postgres holds metadata and the outbox, with transactions. DynamoDB is for a key-value access pattern with a scale you can explain. Do not add it beside Postgres without a reason. ElastiCache is Redis. SQS is the simple queue. The project uses Kafka for the replayable log and can use SQS where replay does not matter.
+
 ## Play this
 
 1. S3 is objects

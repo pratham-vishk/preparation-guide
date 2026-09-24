@@ -13,6 +13,7 @@ flowchart LR
   C --> D[Rewrite tomorrow]
 ```
 
+
 ## Play this
 
 1. Identify the pattern before coding

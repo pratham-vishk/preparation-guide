@@ -16,6 +16,7 @@ flowchart LR
   Paper[Certs 5] --> Week
 ```
 
+
 ## Play this
 
 1. 75 minutes DSA on weekdays

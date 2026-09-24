@@ -18,6 +18,10 @@ sequenceDiagram
   Agent-->>Op: cause plus evidence
 ```
 
+## The procedure
+
+Question: why is bucket latency high? Collect the latency metric, the slow request ids, the traces, and the recent error logs. Correlate on bucket id and time. Name a likely cause and the evidence. Recommend an action. Do not take the action. If the evidence is thin, say so. The eval asks for the evidence ids, not for a poetic root cause.
+
 ## Play this
 
 1. Read tools only

@@ -14,6 +14,10 @@ flowchart TD
   Account --> Trail[CloudTrail]
 ```
 
+## What you deploy
+
+The image is in ECR. EKS runs the Deployment. CloudWatch holds logs and metrics. CloudTrail holds API calls such as who changed a security group. Alarms fire on error rate and on disk. The agent reads the same metrics. You can describe this without having the production account on day one. A local cluster plus a diagram is an honest version of the story until the apply happens.
+
 ## Play this
 
 1. Build an image

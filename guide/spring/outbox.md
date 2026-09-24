@@ -14,6 +14,10 @@ flowchart TD
   Relay --> Kafka
 ```
 
+## One transaction
+
+The service inserts the business row and an outbox row in one database transaction. A relay reads unpublished outbox rows and sends them to Kafka, then marks them sent. If the process dies after commit and before send, the row is still there and the relay retries. Kafka can still duplicate, so the consumer stays idempotent. This is the project milestone for 25 October.
+
 ## Play this
 
 1. Same transaction

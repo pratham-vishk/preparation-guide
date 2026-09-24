@@ -13,6 +13,10 @@ flowchart LR
   Run --> Logs
 ```
 
+## The image
+
+A Dockerfile copies the jar or the venv and sets the user, the port, and the command. The image runs on your laptop with the same env the cluster will use. A health check is in the app, not only in Docker. Compose brings up Postgres, Kafka, Redis, and the two apps for the November milestone. If it does not run here, Kubernetes will not repair the image.
+
 ## Play this
 
 1. One process per container
