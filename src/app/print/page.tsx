@@ -1,5 +1,5 @@
 import { TopicBody } from "@/components/topic-body";
-import { topics } from "@/lib/syllabus";
+import { orderedParts } from "@/lib/syllabus";
 
 export default function PrintPage() {
   return (
@@ -13,7 +13,10 @@ export default function PrintPage() {
           Java and Spring in production.
         </p>
       </header>
-      {topics.map((item) => (
+      {orderedParts.map((part) => (
+        <section key={part.title} className="space-y-8">
+          <h2 className="font-heading text-3xl">{part.title}</h2>
+          {part.topics.map((item) => (
         <article key={`${item.section}-${item.slug}`} className="space-y-3 break-before-page">
           <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
             {item.section} · {item.minutes}
@@ -27,6 +30,8 @@ export default function PrintPage() {
           </ol>
           <TopicBody item={item} />
         </article>
+          ))}
+        </section>
       ))}
     </div>
   );

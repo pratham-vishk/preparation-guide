@@ -19,6 +19,58 @@ flowchart TD
 
 The queue is the fanout work. The cache is the rendered page of the inbox. Consistency is eventual: a post appears within seconds. Failure of a fanout worker retries. A poison post goes to a dead letter so one bad body does not block the worker. Observability is fanout lag.
 
+## Requirements
+
+Show a home feed. Ranking can be recency in version one.
+
+## Scale estimation
+
+Follows are uneven. Design for a celebrity.
+
+## API
+
+Post, follow, get feed by cursor.
+
+## Data model
+
+Post stored once. Inbox rows are ids.
+
+## High-level architecture
+
+Write the post. A worker fans it out, or the read merges celebrities.
+
+## DB
+
+Post table is the source. Inboxes are derived.
+
+## Caching
+
+The rendered page.
+
+## Queue
+
+The fanout work.
+
+## Consistency
+
+Eventual within seconds.
+
+## Failure handling
+
+A failed fanout retries. A poison post is dead-lettered.
+
+## Observability
+
+Fanout lag.
+
+## Security
+
+A user sees posts they are allowed to see. Block lists are a filter.
+
+## Trade-offs
+
+Pure push falls over on a celebrity. Hybrid is the trade.
+
 ## Play this
 
 1. Fanout on write for normal users

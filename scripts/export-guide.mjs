@@ -1,6 +1,6 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { topics, sections, topicsInSection, slugify } from "../src/lib/syllabus/index.ts";
+import { topics, orderedParts, slugify } from "../src/lib/syllabus/index.ts";
 
 
 const root = path.resolve("guide");
@@ -65,14 +65,24 @@ Each file is a lesson: the idea, a figure, the template or the design, the mista
 
 `;
 
-for (const section of sections) {
-  const dir = path.join(root, slugify(section));
+for (const item of topics) {
+  const dir = path.join(root, slugify(item.section));
   await mkdir(dir, { recursive: true });
-  index += `\n## ${section}\n\n`;
-  for (const item of topicsInSection(section)) {
-    const file = path.join(dir, `${item.slug}.md`);
-    await writeFile(file, body(item));
-    index += `- [${item.title}](${slugify(section)}/${item.slug}.md)\n`;
+  await writeFile(path.join(dir, `${item.slug}.md`), body(item));
+}
+
+for (const part of orderedParts) {
+  index += `\n## ${part.title}\n\n`;
+  for (const item of part.topics) {
+    index += `- [${item.title}](${slugify(item.section)}/${item.slug}.md)\n`;
+  }
+}
+
+const extra = topics.filter((item) => !orderedParts.some((part) => part.topics.includes(item)));
+if (extra.length) {
+  index += `\n## Also in the guide\n\n`;
+  for (const item of extra) {
+    index += `- [${item.title}](${slugify(item.section)}/${item.slug}.md)\n`;
   }
 }
 

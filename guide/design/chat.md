@@ -19,6 +19,58 @@ flowchart LR
 
 A cache can drop data. A chat log cannot. Presence and typing are the cache-like parts: they expire. Messages are the database. Fanout to online users is best-effort on top of the log. Read receipts can wait. Say what you cut.
 
+## Requirements
+
+Send a message, receive it, and catch up after a reconnect.
+
+## Scale estimation
+
+Messages per second per conversation. Sockets are not the storage.
+
+## API
+
+send(conversationId, clientMsgId, body). History by cursor.
+
+## Data model
+
+Message id, conversation id, body, time. Presence is separate and ephemeral.
+
+## High-level architecture
+
+A gateway holds sockets. A log stores messages. Fanout reaches online members.
+
+## DB
+
+The log is the source. A conversation is a partition.
+
+## Caching
+
+Presence and the recent fanout. Not the history.
+
+## Queue
+
+Fanout to online members. The log is durable.
+
+## Consistency
+
+clientMsgId dedupes. Order is per conversation.
+
+## Failure handling
+
+Crash after store and before fanout: the client catch-up repairs it.
+
+## Observability
+
+Send latency and fanout lag.
+
+## Security
+
+A member check on send. Encryption is a sentence if asked.
+
+## Trade-offs
+
+Keeping history only on the gateway loses it on restart.
+
 ## Play this
 
 1. A channel is a partition

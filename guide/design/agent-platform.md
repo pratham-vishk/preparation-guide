@@ -25,6 +25,58 @@ sequenceDiagram
 
 An orchestrator holds state. Specialist agents read logs, metrics, or config. A tool executor checks an allow-list and a human approval for anything that mutates. Every call has a timeout and a trace id. The platform is the project. In a design interview you draw the gate before you draw a second model.
 
+## Requirements
+
+Run a read-only diagnosis and a gated mutation.
+
+## Scale estimation
+
+Few concurrent sessions. The cost is tokens and tool calls.
+
+## API
+
+Start a run. Approve a proposal. Read the trace.
+
+## Data model
+
+Run state, proposal, tool result, trace id.
+
+## High-level architecture
+
+Orchestrator, allow list, human gate, executor, verifier.
+
+## DB
+
+Postgres for proposals. Redis for session state.
+
+## Caching
+
+Session in Redis.
+
+## Queue
+
+None on the read path. The mutation is a row, then a call.
+
+## Consistency
+
+A proposal executes once. State jumps are checked.
+
+## Failure handling
+
+Tool timeout. Process restart loads the pending row.
+
+## Observability
+
+Trace per run. Token count. Approval latency.
+
+## Security
+
+The executor role is separate. Incident text cannot add a tool.
+
+## Trade-offs
+
+An ungated tool is faster and is the bug.
+
 ## Play this
 
 1. Read tools are wider

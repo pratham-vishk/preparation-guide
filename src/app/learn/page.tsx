@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { sections, slugify, topicHref, topicsInSection } from "@/lib/syllabus";
+import { orderedParts, slugify, topicHref, topics } from "@/lib/syllabus";
 
 export default function LearnIndexPage() {
   return (
@@ -14,15 +14,15 @@ export default function LearnIndexPage() {
         <p className="text-lg leading-relaxed">
           Dell SDE II, three-plus years, Java and Spring already in production. The hours go to
           retrieval, interview depth, one storage-operations project, and applications from
-          January. Start with the skill map. Every row in the target stack has a lesson under it,
-          including the Java templates for each DSA pattern.
+          January. The list is the plan in order: each DSA pattern, each Java and Spring name,
+          each design with the full checklist, then AWS, Python, the agent stack, and the calendar.
         </p>
       </header>
       <div className="grid gap-4 lg:grid-cols-[16rem_1fr]">
         <aside className="space-y-2 lg:sticky lg:top-28 lg:self-start">
-          {sections.map((section) => (
-            <a key={section} href={`#${slugify(section)}`} className="block text-sm text-primary">
-              {section}
+          {orderedParts.map((part) => (
+            <a key={part.title} href={`#${slugify(part.title)}`} className="block text-sm text-primary">
+              {part.title}
             </a>
           ))}
           <a href="/print" className="block pt-2 text-sm text-muted-foreground">
@@ -30,11 +30,11 @@ export default function LearnIndexPage() {
           </a>
         </aside>
         <div className="space-y-8">
-          {sections.map((section) => (
-            <section key={section} id={slugify(section)} className="scroll-mt-28">
-              <h2 className="font-heading text-3xl">{section}</h2>
+          {orderedParts.map((part) => (
+            <section key={part.title} id={slugify(part.title)} className="scroll-mt-28">
+              <h2 className="font-heading text-3xl">{part.title}</h2>
               <ul className="mt-3 divide-y divide-border rounded-2xl bg-card ring-1 ring-foreground/10">
-                {topicsInSection(section).map((item) => (
+                {part.topics.map((item) => (
                   <li key={item.slug}>
                     <Link href={topicHref(item)} className="flex items-baseline justify-between gap-4 px-4 py-3 hover:bg-secondary">
                       <span className="font-medium">{item.title}</span>
@@ -45,6 +45,23 @@ export default function LearnIndexPage() {
               </ul>
             </section>
           ))}
+          {topics.length > orderedParts.reduce((sum, part) => sum + part.topics.length, 0) ? (
+            <section id="appendix" className="scroll-mt-28">
+              <h2 className="font-heading text-3xl">Also in the guide</h2>
+              <ul className="mt-3 divide-y divide-border rounded-2xl bg-card ring-1 ring-foreground/10">
+                {topics
+                  .filter((item) => !orderedParts.some((part) => part.topics.includes(item)))
+                  .map((item) => (
+                    <li key={item.slug}>
+                      <Link href={topicHref(item)} className="flex items-baseline justify-between gap-4 px-4 py-3 hover:bg-secondary">
+                        <span className="font-medium">{item.title}</span>
+                        <span className="shrink-0 text-xs text-muted-foreground">{item.section}</span>
+                      </Link>
+                    </li>
+                  ))}
+              </ul>
+            </section>
+          ) : null}
         </div>
       </div>
     </div>

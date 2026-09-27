@@ -18,6 +18,58 @@ flowchart LR
 
 Create returns a short id. Read redirects. The id is random or a counter encoded in base 62. Reads dominate, so a cache sits in front. The database is the source. A collision retries. Analytics are an async event, not a write on the redirect path. Estimate: reads per second, row size, cache hit ratio. That estimate is a practice, and you say the assumptions.
 
+## Requirements
+
+Create a short id and redirect. Analytics can lag.
+
+## Scale estimation
+
+Reads dwarf writes. State a read QPS and a row of a few dozen bytes. Cache the hot ids.
+
+## API
+
+POST /urls returns the short id. GET /{id} redirects 302. Unknown id is 404.
+
+## Data model
+
+id, long url, owner, created at. The id is random or a base-62 counter.
+
+## High-level architecture
+
+API, cache, database. A collision retries a new id.
+
+## DB
+
+The mapping is the source of truth. A relational table is enough.
+
+## Caching
+
+Cache-aside on the id. TTL or explicit delete on a rare update.
+
+## Queue
+
+Clicks are events. The redirect does not write analytics synchronously.
+
+## Consistency
+
+A read can be slightly stale. The create is linearizable on the row.
+
+## Failure handling
+
+Cache down: read the database. Redirect still works, slower.
+
+## Observability
+
+Redirect latency and cache hit ratio.
+
+## Security
+
+The owner may delete. The redirect is public. No open redirect to a scheme you do not allow.
+
+## Trade-offs
+
+A counter id leaks volume. A random id does not and can collide.
+
 ## Play this
 
 1. Generate an unguessable id

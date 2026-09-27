@@ -142,8 +142,9 @@ for (int right = 0; right < n; right++) {
     ],
     problems: problems("sliding-window", [
       ["Longest Substring Without Repeating Characters", "Medium", "Last index of each char. Window of unique chars."],
-      ["Max Consecutive Ones III", "Medium", "At most K zeros. The whole family of 'at most K' starts here."],
+      ["Max Consecutive Ones III", "Medium", "At most K zeros. Fruit Into Baskets and character replacement are the same window with a different count."],
       ["Minimum Window Substring", "Hard", "Need vs have counts. Shrink while the window still covers the target."],
+      ["Binary Subarrays With Sum", "Medium", "Exactly K is atMost(K) minus atMost(K - 1). Nice subarrays is the same trick."],
     ]),
   },
   {
@@ -289,6 +290,37 @@ return prev;`,
       ["Reverse Linked List", "Easy", "Write it until the three lines are automatic."],
       ["Reverse Nodes in k-Group", "Hard", "Count k, reverse that segment, stitch, leave a short tail."],
       ["Palindrome Linked List", "Easy", "Middle, reverse second half, compare, restore if you care."],
+    ]),
+  },
+  {
+    id: "merge-pattern",
+    name: "Merge pattern",
+    phase: "Rebuild",
+    recognize: [
+      "Two or more sequences that are already sorted",
+      "You need one sorted sequence, or the next smallest head",
+      "Linked lists or arrays, the comparison is the same",
+    ],
+    intuition:
+      "Look only at the current head of each sequence. Take the smaller, advance that sequence. A dummy node is the stitch point for lists. A heap is the same idea when there are K lists.",
+    template: `ListNode dummy = new ListNode(0);
+ListNode tail = dummy;
+while (a != null && b != null) {
+    if (a.val <= b.val) { tail.next = a; a = a.next; }
+    else { tail.next = b; b = b.next; }
+    tail = tail.next;
+}
+tail.next = (a != null) ? a : b;
+return dummy.next;`,
+    mistakes: [
+      "Sorting again after the inputs are already sorted",
+      "Forgetting to append the leftover list",
+      "Using a heap of every node instead of a heap of K heads",
+    ],
+    problems: problems("merge-pattern", [
+      ["Merge Two Sorted Lists", "Easy", "Dummy node. This is the skeleton."],
+      ["Merge Sorted Array", "Easy", "Write from the end so you do not overwrite values you still need."],
+      ["Merge k Sorted Lists", "Hard", "Priority queue of the current head of each list."],
     ]),
   },
   {

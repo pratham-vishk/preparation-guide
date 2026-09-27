@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Newsreader, Outfit } from "next/font/google";
 import { SiteHeader } from "@/components/site-header";
 import "./globals.css";
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
     "Office syllabus for a Dell SDE II moving toward a 40–50 LPA Java backend role by April 2027.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"

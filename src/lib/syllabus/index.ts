@@ -1,9 +1,12 @@
 import { backendTopics } from "./backend.ts";
 import { cloudTopics } from "./cloud.ts";
 import { depthLessons } from "./depth.ts";
+import { checklistLessons } from "./design-sheets.ts";
 import { designTopics } from "./design.ts";
 import { dsaTopics } from "./dsa.ts";
 import { foundationTopics } from "./foundations.ts";
+import { designLeaves, leafTopics, serviceLeaves } from "./leaves.ts";
+import { planParts } from "./order.ts";
 import { pathTopics } from "./path.ts";
 import { projectTopics } from "./project.ts";
 import { stackTopics } from "./stack.ts";
@@ -37,6 +40,13 @@ function withDepth(item: Topic): Topic {
   return { ...item, lessons: [...(item.lessons ?? []), ...extra] };
 }
 
+function withChecklist(item: Topic): Topic {
+  if (item.lessons?.some((lesson) => lesson.title === "Requirements")) return item;
+  const extra = checklistLessons(item.slug);
+  if (!extra) return item;
+  return { ...item, lessons: [...(item.lessons ?? []), ...extra] };
+}
+
 const combined = [
   ...foundationTopics,
   ...pathTopics,
@@ -46,11 +56,36 @@ const combined = [
   ...stackTopics,
   ...designTopics,
   ...cloudTopics,
-].map(withDepth);
+  ...leafTopics,
+  ...designLeaves,
+  ...serviceLeaves,
+].map(withDepth).map(withChecklist);
+
+const bySlug = new Map<string, Topic>();
+for (const item of combined) {
+  if (bySlug.has(item.slug)) {
+    throw new Error(`Duplicate syllabus slug: ${item.slug}`);
+  }
+  bySlug.set(item.slug, item);
+}
+
+export const orderedParts: { title: string; topics: Topic[] }[] = planParts.map((part) => ({
+  title: part.title,
+  topics: part.slugs.map((slug) => {
+    const item = bySlug.get(slug);
+    if (!item) throw new Error(`Missing syllabus slug: ${slug}`);
+    return item;
+  }),
+}));
+
+const used = new Set(planParts.flatMap((part) => part.slugs));
 
 export const topics: Topic[] = [
-  ...sectionOrder.flatMap((section) => combined.filter((item) => item.section === section)),
-  ...combined.filter((item) => !sectionOrder.includes(item.section)),
+  ...orderedParts.flatMap((part) => part.topics),
+  ...sectionOrder.flatMap((section) =>
+    combined.filter((item) => item.section === section && !used.has(item.slug)),
+  ),
+  ...combined.filter((item) => !used.has(item.slug) && !sectionOrder.includes(item.section)),
 ];
 
 export const sections = [...new Set(topics.map((item) => item.section))];

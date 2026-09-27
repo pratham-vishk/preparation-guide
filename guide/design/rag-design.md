@@ -23,6 +23,58 @@ sequenceDiagram
 
 The design answer is the pipeline plus failure: the model can be down, the retrieval can be empty, the citation can be wrong. Empty retrieval returns 'I do not have that' rather than a fluent guess. The eval set is part of the design, not a follow-up. Cost is a metric: tokens in, tokens out.
 
+## Requirements
+
+Answer a question about incidents with citations.
+
+## Scale estimation
+
+Question rate is low. The corpus is the synthetic set.
+
+## API
+
+POST /diagnose. The response includes evidence ids.
+
+## Data model
+
+Chunks with incident ids. Questions and expected ids for the eval.
+
+## High-level architecture
+
+Ingest, embed, retrieve, prompt, validate.
+
+## DB
+
+Postgres or files are the source. The vector index is derived.
+
+## Caching
+
+None required at this size.
+
+## Queue
+
+Ingestion can be a job. The question is synchronous.
+
+## Consistency
+
+Empty retrieval means 'I do not know', not a guess.
+
+## Failure handling
+
+Model timeout: error with the request id. Bad JSON: one retry.
+
+## Observability
+
+Token count, citation hit rate, latency.
+
+## Security
+
+Synthetic data only. Retrieved text is untrusted.
+
+## Trade-offs
+
+A chat box without an eval set is a demo.
+
 ## Play this
 
 1. Ingest offline

@@ -5,27 +5,16 @@ The full study guide for one profile: Java backend and distributed systems, with
 Each file is a lesson: the idea, a figure, the template or the design, the mistake, and the interview question. Open the running desk for the animated figures.
 
 
-## Path
+## How to study
 
-- [Every skill in the target stack, with a slot](path/skill-map.md)
 - [One profile, not ten careers](path/one-profile.md)
-- [Four tracks, one weight](path/tracks.md)
-- [What stays closed until the offer](path/do-not-study.md)
-- [Where the hours go](path/weights.md)
-- [Java primary, Python secondary, Go later](path/languages.md)
-
-## Calendar
-
-- [25 Sep to 25 Oct — retrieval and Python syntax](calendar/phase-1.md)
-- [26 Oct to 25 Nov — core structures and four designs](calendar/phase-2.md)
-- [26 Nov to 20 Dec — graphs, cloud, RAG](calendar/phase-3.md)
-- [21 Dec to 15 Jan — mocks, not new syllabi](calendar/phase-4.md)
-- [January apply, April switch](calendar/apply-window.md)
-
-## DSA
-
+- [Every skill in the target stack, with a slot](path/skill-map.md)
 - [Five passes, or it did not happen](dsa/retention.md)
-- [What January needs, and what waits](dsa/january-cut.md)
+- [Four levels for every pattern](dsa/four-levels.md)
+- [DSA order inside the 75 minutes](dsa/dsa-phases.md)
+
+## DSA patterns, in checklist order
+
 - [Hashing / frequency](dsa/hashing.md)
 - [Prefix sum + HashMap](dsa/prefix-hash.md)
 - [Two pointers](dsa/two-pointers.md)
@@ -33,14 +22,15 @@ Each file is a lesson: the idea, a figure, the template or the design, the mista
 - [Binary search](dsa/binary-search.md)
 - [Binary search on the answer](dsa/binary-search-answer.md)
 - [Matrix traversal](dsa/matrix.md)
+- [Backtracking](dsa/backtracking.md)
 - [Fast / slow pointers](dsa/fast-slow.md)
 - [Linked list reversal](dsa/reverse-list.md)
-- [Stack and queue](dsa/stack-queue.md)
-- [Monotonic stack](dsa/monotonic-stack.md)
-- [Intervals](dsa/intervals.md)
-- [Greedy](dsa/greedy.md)
+- [Merge pattern](dsa/merge-pattern.md)
 - [Bit and XOR](dsa/bit-xor.md)
-- [Backtracking](dsa/backtracking.md)
+- [Greedy](dsa/greedy.md)
+- [Intervals](dsa/intervals.md)
+- [Monotonic stack](dsa/monotonic-stack.md)
+- [Stack and queue](dsa/stack-queue.md)
 - [Tree DFS](dsa/tree-dfs.md)
 - [Tree BFS](dsa/tree-bfs.md)
 - [BST inorder property](dsa/bst.md)
@@ -53,8 +43,8 @@ Each file is a lesson: the idea, a figure, the template or the design, the mista
 - [Minimum spanning tree](dsa/mst.md)
 - [1D DP](dsa/dp-1d.md)
 - [Grid DP](dsa/grid-dp.md)
-- [Knapsack / subset DP](dsa/knapsack.md)
 - [Stock DP](dsa/stock-dp.md)
+- [Knapsack / subset DP](dsa/knapsack.md)
 - [LIS pattern](dsa/lis.md)
 - [LCS pattern](dsa/lcs.md)
 - [String DP](dsa/string-dp.md)
@@ -62,105 +52,156 @@ Each file is a lesson: the idea, a figure, the template or the design, the mista
 - [Trie](dsa/trie.md)
 - [KMP, Z, Rabin-Karp](dsa/string-algo.md)
 - [Sieve and factors](dsa/sieve.md)
+- [What January needs, and what waits](dsa/january-cut.md)
 
 ## Java
 
-- [HashMap internals](java/hashmap.md)
 - [Collections you must choose out loud](java/collections.md)
-- [Executors, futures, and CompletableFuture](java/concurrency.md)
+- [HashMap internals](java/hashmap.md)
+- [HashSet](java/hashset.md)
+- [TreeMap](java/treemap.md)
+- [ConcurrentHashMap](java/concurrent-hashmap.md)
+- [equals and hashCode](java/equals-hashcode.md)
+- [Generics](java/generics.md)
+- [Streams](java/streams.md)
+- [Optional](java/optional.md)
+- [Exception handling](java/exceptions.md)
+- [Immutability](java/immutability.md)
 - [volatile, locks, atomics, deadlock](java/jmm.md)
-- [Streams, generics, Optional, immutability](java/streams-generics.md)
 - [JVM, stack, heap, and GC](java/jvm-gc.md)
+- [Thread and Runnable](java/thread-runnable.md)
+- [Callable and Future](java/callable-future.md)
+- [Executors, futures, and CompletableFuture](java/concurrency.md)
+- [synchronized and Lock](java/synchronized-lock.md)
+- [Atomic and volatile](java/atomic-volatile.md)
+- [Thread pools](java/thread-pool.md)
+- [Races and deadlocks](java/race-deadlock.md)
 
-## Spring
+## Spring Boot
 
 - [IoC, beans, and the proxy](spring/ioc.md)
+- [Bean lifecycle](spring/bean-lifecycle.md)
+- [Auto configuration](spring/auto-config.md)
+- [REST, validation, and one error shape](spring/rest-errors.md)
+- [Validation](spring/validation.md)
 - [Transactions, propagation, isolation](spring/transactions.md)
+- [Transaction propagation](spring/propagation.md)
+- [Isolation](spring/isolation.md)
 - [JPA, N+1, locking](spring/jpa.md)
+- [Lazy and eager](spring/lazy-eager.md)
+- [Optimistic and pessimistic locking](spring/locking.md)
+- [Spring caching](spring/caching.md)
+- [Redis as cache, lock, and agent memory](spring/redis.md)
+- [JWT and OAuth](spring/jwt-oauth.md)
+- [Spring async](spring/async-spring.md)
 - [Why Kafka, not another REST call](spring/kafka-why.md)
+- [The Kafka questions, in order](spring/kafka-questions.md)
 - [Consumer crash, duplicates, retries, DLQ](spring/kafka-failure.md)
 - [Outbox](spring/outbox.md)
-- [Redis as cache, lock, and agent memory](spring/redis.md)
-- [Security, resilience, actuator](spring/security-observability.md)
-- [REST, validation, and one error shape](spring/rest-errors.md)
+- [Resilience](spring/resilience.md)
 - [Tests that protect the interview story](spring/testing.md)
+- [Actuator](spring/actuator.md)
+- [Security, resilience, actuator](spring/security-observability.md)
 
-## LLD
+## System design
 
-- [LLD: classes, SOLID, and five patterns](lld/oop-patterns.md)
-
-## SQL
-
-- [Indexes, plans, and isolation](sql/indexes-isolation.md)
-
-## Distributed
-
-- [Replication, partitions, and delivery](distributed/failure-and-delivery.md)
-
-## Linux
-
-- [Processes, DNS, and TCP](linux/ports-and-tcp.md)
-
-## Observability
-
-- [Logs, metrics, traces](observability/logs-metrics-traces.md)
-
-## Terraform
-
-- [One Terraform module after the diagram](terraform/one-module.md)
-
-## Design
-
+- [How every design is told](design/checklist.md)
+- [URL shortener](design/url-shortener.md)
+- [Rate limiter](design/rate-limiter.md)
+- [Notification system](design/notification.md)
+- [Kafka event system](design/kafka-events.md)
+- [File and object storage](design/file-storage.md)
 - [Distributed cache](design/distributed-cache.md)
 - [Chat](design/chat.md)
 - [News feed](design/news-feed.md)
 - [Search](design/search.md)
 - [Payments](design/payments.md)
-- [Job scheduler, logs, and metrics](design/scheduler-logs.md)
+- [Job scheduler](design/job-scheduler.md)
+- [Log aggregation](design/log-aggregation.md)
+- [Metrics system](design/metrics-system.md)
 - [Ride booking](design/ride-booking.md)
-- [How every design is told](design/checklist.md)
-- [URL shortener](design/url-shortener.md)
-- [Rate limiter](design/rate-limiter.md)
-- [Notification system](design/notification.md)
-- [File and object storage](design/file-storage.md)
+- [Object storage](design/object-storage.md)
 - [AI chat with RAG](design/rag-design.md)
 - [Agent orchestration with a human gate](design/agent-platform.md)
-- [Cache, chat, and feed in one sitting](design/cache-chat-feed.md)
-- [Search, payments, scheduler, logs](design/search-pay-schedule.md)
 
-## Cloud
+## AWS, in service order
 
-- [EC2, ALB, autoscaling, ECS, EKS](cloud/compute.md)
-- [SQS, SNS, Lambda, API Gateway](cloud/integration.md)
-- [KMS, secrets, ECR, Route 53](cloud/security-edge.md)
-- [IAM and VPC before any service](cloud/iam-vpc.md)
-- [S3, RDS, queues, and cache](cloud/data-plane.md)
-- [EKS, images, and CloudWatch](cloud/eks-observe.md)
-
-## Kubernetes
-
-- [Docker, then the cluster](kubernetes/docker.md)
-- [Deployment, Service, probes, HPA](kubernetes/objects.md)
-- [Config, RBAC, Helm, then CKAD](kubernetes/config-helm.md)
+- [IAM](cloud/iam.md)
+- [VPC](cloud/vpc.md)
+- [EC2](cloud/ec2.md)
+- [ALB](cloud/alb.md)
+- [Auto Scaling](cloud/autoscaling.md)
+- [S3](cloud/s3.md)
+- [RDS](cloud/rds.md)
+- [DynamoDB](cloud/dynamodb.md)
+- [ElastiCache](cloud/elasticache.md)
+- [SQS](cloud/sqs.md)
+- [SNS](cloud/sns.md)
+- [Lambda](cloud/lambda.md)
+- [ECS](cloud/ecs.md)
+- [EKS](cloud/eks.md)
+- [CloudWatch](cloud/cloudwatch.md)
+- [CloudTrail](cloud/cloudtrail.md)
+- [API Gateway](cloud/api-gateway.md)
+- [ECR](cloud/ecr.md)
+- [Secrets Manager](cloud/secrets-manager.md)
+- [KMS](cloud/kms.md)
+- [Route 53](cloud/route53.md)
+- [CI and CD](cloud/cicd.md)
+- [SAA, CKAD, and BITS on the side](career/certs-bits.md)
 
 ## Python
 
-- [Python syntax and collections](python/syntax-collections.md)
-- [FastAPI, Pydantic, SQLAlchemy](python/fastapi-data.md)
-- [Python through FastAPI](python/python-path.md)
+- [Python basics](python/py-basics.md)
+- [Python classes](python/py-oop.md)
+- [Python collections](python/py-collections.md)
+- [typing](python/py-typing.md)
+- [venv and pip](python/py-venv.md)
+- [pytest](python/py-pytest.md)
+- [requests and httpx](python/py-http.md)
+- [asyncio](python/py-asyncio.md)
+- [FastAPI](python/py-fastapi.md)
+- [Pydantic](python/py-pydantic.md)
+- [SQLAlchemy](python/py-sqlalchemy.md)
+- [Docker for the agent](python/py-docker.md)
 
-## AI
+## LLM, RAG, and agents
 
-- [Tokens, embeddings, retrieval](ai/llm-basics.md)
-- [Production RAG](ai/rag-pipeline.md)
-- [Agents, MCP, evals, and safety](ai/agents-mcp.md)
+- [Tokens](ai/tokens.md)
+- [Context window](ai/context-window.md)
+- [Temperature and sampling](ai/temperature.md)
+- [Embeddings](ai/embeddings.md)
+- [Vector similarity](ai/vector-similarity.md)
+- [Chunking](ai/chunking.md)
+- [Retrieval](ai/retrieval.md)
+- [Reranking](ai/reranking.md)
+- [Structured output](ai/structured-output.md)
+- [Tool calling](ai/tool-calling.md)
+- [Streaming](ai/streaming.md)
+- [Document ingestion](ai/ingest.md)
+- [Vector store](ai/vector-db.md)
+- [Prompt and context](ai/prompt-build.md)
+- [Citations](ai/citation.md)
+- [Evaluation](ai/eval-set.md)
+- [The agent loop](ai/agent-loop.md)
+- [Planner](ai/planner.md)
+- [Memory](ai/memory.md)
+- [State](ai/agent-state.md)
+- [Workflow](ai/workflow.md)
+- [Human approval](ai/human-approval.md)
+- [Retries and timeouts](ai/retries-timeout.md)
+- [Guardrails](ai/guardrails.md)
+- [Agent evaluation](ai/agent-eval.md)
+- [MCP](ai/mcp.md)
+- [Tracing an agent](ai/tracing.md)
+- [Cost](ai/cost.md)
+- [AI security](ai/ai-security.md)
+- [Prompt injection](ai/prompt-injection.md)
+- [Data leakage](ai/data-leakage.md)
 
-## Go
+## FDE and the flagship
 
-- [Go after the offer, at reading depth](go/read-go.md)
-
-## Project
-
+- [Forward deployed engineering](career/fde.md)
 - [AI-native object storage operations](project/flagship.md)
 - [Diagnostics agent](project/debugger-agent.md)
 - [Capacity agent](project/capacity-agent.md)
@@ -168,7 +209,59 @@ Each file is a lesson: the idea, a figure, the template or the design, the mista
 - [Safe executor](project/safe-executor.md)
 - [Milestones through January](project/milestones.md)
 
-## Career
+## Kubernetes, then CKAD
 
-- [SAA, CKAD, and BITS on the side](career/certs-bits.md)
+- [Docker, then the cluster](kubernetes/docker.md)
+- [Kubernetes fundamentals](kubernetes/k8s-fundamentals.md)
+- [Deploy the Spring service](kubernetes/deploy-spring.md)
+- [Deploy the FastAPI service](kubernetes/deploy-fastapi.md)
+- [ConfigMap and Secret](kubernetes/configmap-secret.md)
+- [Service and Ingress](kubernetes/service-ingress.md)
+- [Probes](kubernetes/probes.md)
+- [HPA](kubernetes/hpa.md)
+- [RBAC](kubernetes/rbac.md)
+- [Volumes](kubernetes/volumes.md)
+- [Helm](kubernetes/helm.md)
+- [When to book CKAD](kubernetes/ckad-when.md)
+
+## Calendar, networking, tracks
+
+- [BITS M.Tech AI and ML, as a side degree](career/bits-curriculum.md)
+- [25 Sep to 25 Oct — retrieval and Python syntax](calendar/phase-1.md)
+- [26 Oct to 25 Nov — core structures and four designs](calendar/phase-2.md)
+- [26 Nov to 20 Dec — graphs, cloud, RAG](calendar/phase-3.md)
+- [21 Dec to 15 Jan — mocks, not new syllabi](calendar/phase-4.md)
 - [One post, a short list of people](career/linkedin.md)
+- [January apply, April switch](calendar/apply-window.md)
+- [Four tracks, one weight](path/tracks.md)
+- [Java primary, Python secondary, Go later](path/languages.md)
+- [Where the hours go](path/weights.md)
+- [What stays closed until the offer](path/do-not-study.md)
+
+## Also in the guide
+
+- [Streams, generics, Optional, immutability](java/streams-generics.md)
+- [LLD: classes, SOLID, and five patterns](lld/oop-patterns.md)
+- [Indexes, plans, and isolation](sql/indexes-isolation.md)
+- [Replication, partitions, and delivery](distributed/failure-and-delivery.md)
+- [Processes, DNS, and TCP](linux/ports-and-tcp.md)
+- [Logs, metrics, traces](observability/logs-metrics-traces.md)
+- [One Terraform module after the diagram](terraform/one-module.md)
+- [Job scheduler, logs, and metrics](design/scheduler-logs.md)
+- [Cache, chat, and feed in one sitting](design/cache-chat-feed.md)
+- [Search, payments, scheduler, logs](design/search-pay-schedule.md)
+- [EC2, ALB, autoscaling, ECS, EKS](cloud/compute.md)
+- [SQS, SNS, Lambda, API Gateway](cloud/integration.md)
+- [KMS, secrets, ECR, Route 53](cloud/security-edge.md)
+- [IAM and VPC before any service](cloud/iam-vpc.md)
+- [S3, RDS, queues, and cache](cloud/data-plane.md)
+- [EKS, images, and CloudWatch](cloud/eks-observe.md)
+- [Deployment, Service, probes, HPA](kubernetes/objects.md)
+- [Config, RBAC, Helm, then CKAD](kubernetes/config-helm.md)
+- [Python syntax and collections](python/syntax-collections.md)
+- [FastAPI, Pydantic, SQLAlchemy](python/fastapi-data.md)
+- [Python through FastAPI](python/python-path.md)
+- [Tokens, embeddings, retrieval](ai/llm-basics.md)
+- [Production RAG](ai/rag-pipeline.md)
+- [Agents, MCP, evals, and safety](ai/agents-mcp.md)
+- [Go after the offer, at reading depth](go/read-go.md)

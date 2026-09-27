@@ -18,6 +18,58 @@ flowchart TD
 
 Token bucket: tokens refill with time, a request takes one. Sliding window counts requests in the last N seconds. Store the counter in Redis so every app instance sees it. The key is the client. Failure of Redis is a product decision: fail open to keep the site up, or fail closed to keep a limit. Say which, for this API. The LLD lesson is the same limiter as classes.
 
+## Requirements
+
+Allow or deny a client. The limit is shared across API instances.
+
+## Scale estimation
+
+One counter read and write per request. The key set is the client set.
+
+## API
+
+The limiter is inside the API, or a filter. 429 with a retry-after when denied.
+
+## Data model
+
+Key: client id. Value: tokens and a timestamp, or a window count.
+
+## High-level architecture
+
+Every instance talks to Redis. The decision is one atomic update.
+
+## DB
+
+Redis is the store for this counter. It is not the business database.
+
+## Caching
+
+This is the cache. There is no second cache.
+
+## Queue
+
+None. The decision is synchronous.
+
+## Consistency
+
+The atomic update is the consistency. A lost Redis is a product choice.
+
+## Failure handling
+
+Redis timeout: fail open or fail closed. Say which for this API.
+
+## Observability
+
+Denied count and Redis latency.
+
+## Security
+
+The key is the authenticated client, not a header the caller can forge.
+
+## Trade-offs
+
+Token bucket is smooth. A fixed window is simpler and allows a burst on the boundary.
+
 ## Play this
 
 1. Token bucket

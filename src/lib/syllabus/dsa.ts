@@ -11,6 +11,7 @@ const january = new Set([
   "matrix",
   "fast-slow",
   "reverse-list",
+  "merge-pattern",
   "stack-queue",
   "monotonic-stack",
   "intervals",

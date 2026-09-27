@@ -18,6 +18,58 @@ flowchart LR
 
 Bytes go to object storage in parts. Metadata and the part list go to Postgres. Complete assembles the object. A presigned URL lets the client upload without proxying the bytes through your app. This is the flagship's storage, synthetic. Dedup and encryption are sentences if time remains. The metadata write and the event use the outbox.
 
+## Requirements
+
+Upload and download an object. Bytes do not sit in the API process.
+
+## Scale estimation
+
+Large objects, modest metadata QPS.
+
+## API
+
+Start multipart, presign parts, complete, get metadata.
+
+## Data model
+
+Object, parts, etags, bucket id.
+
+## High-level architecture
+
+API for metadata. Object store for bytes. Event after commit.
+
+## DB
+
+Postgres for metadata.
+
+## Caching
+
+Metadata cache with eviction on complete and delete.
+
+## Queue
+
+Outbox for object-created.
+
+## Consistency
+
+Complete is idempotent on the upload id.
+
+## Failure handling
+
+Missing part fails complete. Crash after the row commit is the outbox.
+
+## Observability
+
+Complete errors and bytes used.
+
+## Security
+
+Presign expires. No public list.
+
+## Trade-offs
+
+Proxying bytes is easier to code and wrong at size.
+
 ## Play this
 
 1. Metadata is not the bytes

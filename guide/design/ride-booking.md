@@ -19,6 +19,58 @@ flowchart LR
 
 Pricing, maps, and surge can be a single sentence: a price is computed and stored on the trip at match time. Spend the minutes on the race. This design is practice for any exclusive allocation, including a capacity reservation on a cluster.
 
+## Requirements
+
+Match a rider to one nearby driver.
+
+## Scale estimation
+
+Location writes are hot. Matches are rarer.
+
+## API
+
+Request ride, accept, start, complete.
+
+## Data model
+
+Trip state. Driver status. Latest location.
+
+## High-level architecture
+
+Location store, a matcher, a conditional update on the driver.
+
+## DB
+
+Trips in Postgres. Locations in a cache or a specialized store.
+
+## Caching
+
+Latest location only.
+
+## Queue
+
+Match attempts if the first driver loses the race.
+
+## Consistency
+
+The conditional update is the lock: status was free.
+
+## Failure handling
+
+The loser tries the next driver. A matcher crash retries the request id.
+
+## Observability
+
+Match latency and double-offer count, which must stay zero.
+
+## Security
+
+A rider sees their trip. Location retention is short.
+
+## Trade-offs
+
+A scan for the nearest driver is simpler and races.
+
 ## Play this
 
 1. Location is a hot write

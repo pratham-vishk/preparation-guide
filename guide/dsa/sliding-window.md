@@ -41,9 +41,11 @@ for (int right = 0; right < n; right++) {
 
 Longest Substring Without Repeating Characters (Medium). Last index of each char. Window of unique chars.
 
-Max Consecutive Ones III (Medium). At most K zeros. The whole family of 'at most K' starts here.
+Max Consecutive Ones III (Medium). At most K zeros. Fruit Into Baskets and character replacement are the same window with a different count.
 
 Minimum Window Substring (Hard). Need vs have counts. Shrink while the window still covers the target.
+
+Binary Subarrays With Sum (Medium). Exactly K is atMost(K) minus atMost(K - 1). Nice subarrays is the same trick.
 
 ## Mistakes that make you blank in the interview
 

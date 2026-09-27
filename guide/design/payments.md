@@ -17,6 +17,58 @@ flowchart LR
 
 It tests idempotency, money, and honesty about failure. You do not need to have worked at a bank. You need the state machine and the key. Connect it to the safe executor: a tool call that changes capacity is a state machine with a human approval edge.
 
+## Requirements
+
+Charge once and keep a history.
+
+## Scale estimation
+
+Correctness over throughput. State a modest write QPS.
+
+## API
+
+POST /charges with Idempotency-Key. Same key and same body returns the same charge. A different body is 409.
+
+## Data model
+
+Charge state and ledger lines. Balance is a sum you can rebuild.
+
+## High-level architecture
+
+API, database, provider call with the same key.
+
+## DB
+
+Postgres. The ledger is the source.
+
+## Caching
+
+None on the write path.
+
+## Queue
+
+Provider calls can be async after authorization if you split states.
+
+## Consistency
+
+The key and the state machine. Illegal jumps fail.
+
+## Failure handling
+
+Provider timeout: retry with the same key. Unknown result: reconcile.
+
+## Observability
+
+State counts and provider errors.
+
+## Security
+
+The key is bound to the authenticated caller. Amounts are integers of minor units.
+
+## Trade-offs
+
+A single balance column is shorter and unauditable.
+
 ## Play this
 
 1. Idempotency key

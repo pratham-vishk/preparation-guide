@@ -18,6 +18,58 @@ flowchart LR
 
 Search is a second store. It can be wrong for a while. The source cannot. Tokens, inverted lists, and a rank function are enough. You do not need to implement a search engine. You need to say what is authoritative.
 
+## Requirements
+
+Keyword search over object names and incident notes.
+
+## Scale estimation
+
+Query rate and index size. Writes are the event rate.
+
+## API
+
+GET /search?q= .
+
+## Data model
+
+Document id, tokens, source id.
+
+## High-level architecture
+
+The database emits an event. An indexer updates an inverted index. Queries hit the index, then load the row.
+
+## DB
+
+Postgres is the source. The index is derived.
+
+## Caching
+
+Hot queries.
+
+## Queue
+
+The index events.
+
+## Consistency
+
+Stale by the indexer lag. Say the lag.
+
+## Failure handling
+
+A rebuild from the database exists.
+
+## Observability
+
+Indexer lag and query latency.
+
+## Security
+
+The same authorization as the row. The index must not leak a private incident.
+
+## Trade-offs
+
+LIKE on the primary table is simpler and dies at size.
+
 ## Play this
 
 1. Index is not the database

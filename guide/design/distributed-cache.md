@@ -20,6 +20,58 @@ flowchart TD
 
 Requirements and the staleness you will accept come first. Scale is the hot key, not the average key. The API does not change. The data model is the key and the TTL. Architecture is cache-aside in front of Postgres. Consistency is eventual within the TTL, plus an explicit delete on update. Observability is hit ratio and fill latency. Security is a cache that does not hold raw credentials. The trade-off is freshness against database load.
 
+## Requirements
+
+Serve hot bucket metadata with a bound on staleness.
+
+## Scale estimation
+
+The hot set is small. State the read QPS.
+
+## API
+
+The API does not change. The cache is invisible.
+
+## Data model
+
+Key bucket id. JSON value. TTL 60 seconds.
+
+## High-level architecture
+
+Cache-aside in front of Postgres.
+
+## DB
+
+Postgres remains the source.
+
+## Caching
+
+This design is the cache.
+
+## Queue
+
+None on the read path.
+
+## Consistency
+
+Eventual within the TTL, plus delete on write.
+
+## Failure handling
+
+Redis down: read Postgres. Stampede: single-flight.
+
+## Observability
+
+Hit ratio and fill latency.
+
+## Security
+
+Do not cache secrets.
+
+## Trade-offs
+
+A longer TTL saves the database and lies longer.
+
 ## Play this
 
 1. Cache aside
